@@ -1,0 +1,11 @@
+/* Liquid Water visual layer — mempertahankan nuansa air bening */
+.card,.banner,.search,.auth-card,.pop,.toast{background-clip:padding-box}
+.card,.auth-card{overflow:hidden}
+.card::after{content:"";position:absolute;top:-38px;right:-35px;width:130px;height:65px;border:1px solid rgba(255,255,255,.75);border-radius:50%;box-shadow:0 0 0 7px rgba(255,255,255,.12),0 0 0 15px rgba(147,197,253,.08);pointer-events:none}
+.hero::after{content:"";position:absolute;inset:auto -10% -65% 25%;height:100%;border:1px solid rgba(255,255,255,.2);border-radius:50%;box-shadow:0 0 0 12px rgba(255,255,255,.06),0 0 0 26px rgba(255,255,255,.04);pointer-events:none}
+@keyframes waterRipple{0%,100%{transform:scale(1);opacity:.5}50%{transform:scale(1.08);opacity:.85}}
+.hero::before{animation:waterRipple 9s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){
+  .hero::before{animation:none}
+  .card::after{display:none}
+}
