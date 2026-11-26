@@ -1,0 +1,10 @@
+/* Admin and Owner dashboard */
+.dstats .card:last-child:nth-child(odd){grid-column:1/-1}
+.abtns{display:flex;gap:6px;flex-shrink:0}
+.mini.ok{color:#15803d;border-color:#bbf7d0;background:#f0fdf4}
+.mini.no{color:#b91c1c;border-color:#fecaca;background:#fff5f5}
+.mini:disabled{opacity:.5}
+.rkrow{display:flex;align-items:center;gap:10px;margin:10px 0}
+.rkrow label{flex:0 0 110px;font-size:13px;font-weight:600}
+.rkrow input,.msrch{flex:1;width:100%;height:42px;border:1px solid var(--line);border-radius:12px;padding:0 12px;font-size:14px;background:rgba(255,255,255,.8);color:var(--ink)}
+.msrch{margin-bottom:8px}
