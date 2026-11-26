@@ -1,0 +1,12 @@
+#app{width:100%;max-width:520px;margin:0 auto;padding-bottom:110px}
+main{padding:18px 16px}
+.page{display:none}
+.page.active{display:block}
+.hello{margin-bottom:16px}
+.hello h1{font-size:20px}
+.hello p{font-size:13px;color:var(--muted);margin:2px 0 0}
+.muted,.card small{font-size:12px;color:var(--muted)}
+.empty{font-size:13px;color:var(--muted);padding:6px 0}
+.sec{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:24px 0 10px;font-size:14px;font-weight:700}
+.sec button{background:none;border:none;color:var(--blue);font-size:12px;font-weight:600}
+.row{display:flex;gap:12px}
