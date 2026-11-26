@@ -1,0 +1,11 @@
+:root{
+  --blue:#2563eb;
+  --dark:#1e40af;
+  --ink:#0f172a;
+  --muted:#64748b;
+  --line:#e2e8f0;
+  --bg:#f8fafc;
+  --w:#fff;
+  --water:linear-gradient(160deg,rgba(255,255,255,.96) 0%,rgba(234,244,255,.86) 55%,rgba(255,255,255,.94) 100%);
+  --water-sh:0 14px 32px rgba(37,99,235,.12),inset 0 2px 6px #fff,inset 0 -8px 18px rgba(147,197,253,.3);
+}
