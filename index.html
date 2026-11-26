@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CUANBRO</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="auth" style="display:none">
+  <div class="auth-card">
+    <div class="brand">
+      <div class="logo-big">C</div>
+      <div class="logo" style="font-size:17px">C U A N B R O</div>
+      <p class="muted" id="brand-sub">Masuk untuk melanjutkan</p>
+    </div>
+
+    <div class="view active" id="view-login">
+      <p class="msg" id="login-msg"></p>
+      <form id="login-form" autocomplete="on">
+        <div class="field"><label for="login-email">Email</label>
+          <input type="email" id="login-email" placeholder="nama@email.com" autocomplete="email" required></div>
+        <div class="field"><label for="login-password">Password</label>
+          <div class="pw"><input type="password" id="login-password" placeholder="Masukkan password" autocomplete="current-password" required>
+          <button type="button" class="eyebtn" aria-label="Lihat password"></button></div></div>
+        <div class="link-row"><button type="button" class="link" data-view="forgot">Lupa password?</button></div>
+        <button type="submit" class="btn-primary" id="login-btn">Masuk</button>
+      </form>
+      <div class="switch">Belum punya akun? <button type="button" class="link" data-view="register">Buat akun</button></div>
+    </div>
+
+    <div class="view" id="view-register">
+      <p class="msg" id="register-msg"></p>
+      <form id="register-form" autocomplete="off">
+        <div class="field"><label for="reg-name">Nama lengkap</label>
+          <input type="text" id="reg-name" placeholder="Nama Anda" maxlength="60" autocomplete="name" required></div>
+        <div class="field"><label for="reg-email">Email</label>
+          <input type="email" id="reg-email" placeholder="nama@email.com" autocomplete="email" required></div>
+        <div class="field"><label for="reg-password">Password</label>
+          <div class="pw"><input type="password" id="reg-password" placeholder="Minimal 8 karakter" minlength="8" autocomplete="new-password" required>
+          <button type="button" class="eyebtn" aria-label="Lihat password"></button></div></div>
+        <div class="field"><label for="reg-confirm">Ulangi password</label>
+          <div class="pw"><input type="password" id="reg-confirm" placeholder="Ulangi password" minlength="8" autocomplete="new-password" required>
+          <button type="button" class="eyebtn" aria-label="Lihat password"></button></div></div>
+        <div class="dest-t">Data rekening penarikan</div>
+        <div class="field" style="margin-top:10px"><label for="reg-type">Jenis tujuan</label>
+          <select id="reg-type" required>
+            <option value="">Pilih Bank / E-wallet</option>
+            <option value="bank">Bank</option>
+            <option value="ewallet">E-wallet</option>
+          </select></div>
+        <div class="field" id="reg-bank-field" style="display:none"><label for="reg-bank" id="reg-bank-label">Pilih bank</label>
+          <select id="reg-bank" required><option value="">Pilih...</option></select></div>
+        <div class="field"><label for="reg-accname">Atas nama</label>
+          <input type="text" id="reg-accname" placeholder="Nama pemilik rekening" maxlength="60" required></div>
+        <div class="field"><label for="reg-acc" id="reg-acc-label">Nomor rekening / e-wallet</label>
+          <input type="text" id="reg-acc" inputmode="numeric" placeholder="Hanya angka" maxlength="25" required></div>
+        <label class="check"><input type="checkbox" id="reg-ok"> <span>Data rekening sudah benar. Setelah daftar, data ini tidak bisa diubah sendiri.</span></label>
+        <button type="submit" class="btn-primary" id="register-btn">Daftar</button>
+      </form>
+      <div class="switch">Sudah punya akun? <button type="button" class="link" data-view="login">Masuk</button></div>
+    </div>
+
+    <div class="view" id="view-forgot">
+      <p class="muted" style="margin-bottom:12px">Masukkan email akunmu. Kami kirim tautan untuk membuat password baru.</p>
+      <p class="msg" id="forgot-msg"></p>
+      <form id="forgot-form" autocomplete="off">
+        <div class="field"><label for="forgot-email">Email</label>
+          <input type="email" id="forgot-email" placeholder="nama@email.com" autocomplete="email" required></div>
+        <button type="submit" class="btn-primary" id="forgot-btn">Kirim tautan reset</button>
+      </form>
+      <div class="switch"><button type="button" class="link" data-view="login">Kembali ke halaman masuk</button></div>
+    </div>
+
+    <div class="view" id="view-reset">
+      <p class="muted" style="margin-bottom:12px">Buat password baru untuk akunmu.</p>
+      <p class="msg" id="reset-msg"></p>
+      <form id="reset-form" autocomplete="off">
+        <div class="field"><label for="new-password">Password baru</label>
+          <div class="pw"><input type="password" id="new-password" placeholder="Minimal 8 karakter" minlength="8" autocomplete="new-password" required>
+          <button type="button" class="eyebtn" aria-label="Lihat password"></button></div></div>
+        <button type="submit" class="btn-primary" id="reset-btn">Simpan password</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="app" style="display:none">
+<header>
+  <div class="hl">
+    <button class="ib" id="menu-btn" aria-label="Buka menu" aria-expanded="false">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <div class="logo">C U A N B R O</div>
+  </div>
+  <div class="hr">
+    <button class="ib" id="bell" aria-label="Notifikasi">🔔<i class="nbadge" id="nbadge" aria-hidden="true"></i></button>
+    <button class="av" id="avatar" aria-label="Akun">?</button>
+  </div>
+</header>
+
+<main>
+<section class="page active" id="home">
+  <div class="hello"><h1 id="greet">Halo, Pengguna</h1><p>Selamat datang kembali. Yuk selesaikan misi hari ini.</p></div>
+
+  <div class="banner" id="banner"><b>📢 Pengumuman</b><span id="banner-text"></span></div>
+
+  <div class="hero">
+    <div class="t"><span>SALDO TERSEDIA</span><div class="ta"><button class="eye refresh" aria-label="Perbarui saldo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 4v5h-5"/></svg>Perbarui</button><button class="eye" id="eye" aria-label="Sembunyikan saldo">👁</button></div></div>
+    <div class="bal" id="balance">Rp 0</div>
+    <div class="row"><button class="b1" data-open="withdraw">Tarik Saldo</button></div>
+  </div>
+
+  <div class="card" id="queue-card" style="display:none;margin-bottom:16px">
+    <div class="qtop"><b>Antrean penarikan</b><button class="mini" id="queue-refresh" type="button" aria-label="Perbarui antrean">↻ Perbarui</button></div>
+    <div id="queue-list"></div>
+  </div>
+
+  <div class="stats">
+    <div class="card"><small>Misi selesai</small><div class="v" id="st-done">0</div></div>
+    <div class="card"><small>Reward disetujui</small><div class="v" id="st-reward">Rp 0</div></div>
+  </div>
+
+  <input class="search" id="search" type="search" placeholder="🔍 Cari misi...">
+
+  <div class="sec">Misi pilihan <button data-go="misi">Lihat semua</button></div>
+  <div class="card" id="mis-home"><p class="empty">Memuat misi...</p></div>
+
+  <div class="sec">Progress harian</div>
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;font-size:13px"><b>Misi selesai hari ini</b><span id="prog-txt">0/3</span></div>
+    <div class="bar"><i id="prog-bar"></i></div>
+    <div class="muted">Setiap misi yang selesai dan disetujui admin memberi reward sesuai nilainya.</div>
+  </div>
+
+  <div class="sec">Misi saya</div>
+  <div class="card" id="my-home"><p class="empty">Belum ada misi yang sedang dikerjakan.</p></div>
+
+  <div class="sec">Aktivitas terbaru <button data-go="aktivitas">Lihat semua</button></div>
+  <div class="card" id="act-home"><p class="empty">Belum ada aktivitas.</p></div>
+
+  <div class="sec">Pusat bantuan</div>
+  <div class="card" id="help">
+    <details><summary>Bagaimana cara mengerjakan misi?</summary><p>Pilih misi aktif, baca instruksinya, ambil misi, kerjakan, lalu tekan Saya Sudah Mengerjakan sebelum batas waktu.</p></details>
+    <details><summary>Kapan reward masuk ke saldo?</summary><p>Setelah admin memverifikasi misimu, sesuai durasi verifikasi pada misi.</p></details>
+    <details><summary>Bagaimana cara tarik saldo?</summary><p>Ajukan lewat tombol Tarik Saldo. Permintaan diproses admin dan statusnya tampil di Aktivitas.</p></details>
+  </div>
+</section>
+
+<section class="page" id="misi">
+  <div class="chips" id="m-chips">
+    <button class="chip on" data-f="aktif">Aktif</button>
+    <button class="chip" data-f="selesai">Selesai</button>
+  </div>
+  <div class="card" id="mis-all"><p class="empty">Memuat misi...</p></div>
+</section>
+
+<section class="page" id="riwayat">
+  <div class="hero">
+    <div class="t"><span>SALDO TERSEDIA</span><div class="ta"><button class="eye refresh" aria-label="Perbarui saldo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 4v5h-5"/></svg>Perbarui</button></div></div>
+    <div class="bal" data-bal>Rp 0</div>
+    <div class="row"><button class="b1" data-open="withdraw">Tarik Saldo</button></div>
+  </div>
+  <div class="sec">Transaksi wallet</div>
+  <div class="card" id="tx-wallet"><p class="empty">Belum ada transaksi.</p></div>
+</section>
+
+<section class="page" id="aktivitas">
+  <input class="search" id="a-search" type="search" placeholder="🔍 Cari nama aktivitas...">
+  <div class="chips" id="a-chips">
+    <button class="chip on" data-f="all">Semua</button>
+    <button class="chip" data-f="misi">Misi</button>
+    <button class="chip" data-f="tarik">Penarikan</button>
+    <button class="chip" data-f="saldo">Transaksi Saldo</button>
+  </div>
+  <div class="dates">
+    <select id="a-period">
+      <option value="all">Semua waktu</option><option value="today">Hari ini</option>
+      <option value="7">7 hari terakhir</option><option value="30">30 hari terakhir</option>
+      <option value="custom">Pilih tanggal</option>
+    </select>
+    <input type="date" id="a-from" class="hid" aria-label="Dari tanggal">
+    <input type="date" id="a-to" class="hid" aria-label="Sampai tanggal">
+  </div>
+  <div class="card" id="act-all"><p class="empty">Memuat aktivitas...</p></div>
+</section>
+
+<section class="page" id="profile">
+  <div class="card"><div class="v" id="acc-name">Pengguna</div><p class="muted" id="acc-email">Belum masuk</p></div>
+  <div class="sec">Notifikasi</div>
+  <div class="card" id="nset">
+    <div class="drow"><span>Izin notifikasi browser</span><span id="ns-perm">-</span></div>
+    <div class="help" id="ns-help" style="display:none"></div>
+    <div class="drow"><span>Notifikasi dalam aplikasi</span><label class="sw"><input type="checkbox" id="ns-inapp" aria-label="Aktifkan notifikasi dalam aplikasi"><i></i></label></div>
+    <div class="drow"><span>Dukungan push di perangkat</span><span id="ns-support">-</span></div>
+    <div class="drow"><span>Status push</span><span id="ns-push">-</span></div>
+    <button class="go" id="ns-btn" type="button" style="display:none"></button>
+    <p class="msg" id="ns-msg" style="margin-top:8px"></p>
+  </div>
+  <button class="logout" id="logout">Keluar</button>
+</section>
+</main>
+
+<nav class="bottom-nav" id="nav">
+  <div class="lens" id="lens"></div>
+  <button class="active" data-go="home"><span class="icon">🏠</span>Home</button>
+  <button data-go="aktivitas"><span class="icon">📋</span>Aktivitas</button>
+  <button class="center-btn" data-go="misi"><span class="icon">🎯</span>Misi</button>
+  <button data-go="riwayat"><span class="icon">🕘</span>Riwayat</button>
+  <button data-go="profile"><span class="icon">👤</span>Profile</button>
+</nav>
+
+<div class="back" id="sheet">
+  <div class="sheet" role="dialog" aria-modal="true">
+    <h2 id="sh-title"></h2>
+    <div class="muted" id="sh-sub"></div>
+    <input type="number" id="sh-amount" inputmode="numeric" step="1" min="50000" placeholder="Jumlah penarikan (Rp)">
+    <div class="dest-t">Tujuan penarikan</div>
+    <div class="dest-box" id="dest-box"></div>
+    <div class="muted" style="margin-top:6px">Data rekening diisi saat pendaftaran dan tidak bisa diubah di sini.</div>
+    <p class="msg" id="sh-msg"></p>
+    <button class="go" id="sh-go">Kirim</button>
+    <button class="cancel" id="sh-cancel">Batal</button>
+  </div>
+</div>
+</div>
+
+<div class="drawer-back" id="drawer-back"></div>
+<aside class="drawer" id="drawer" aria-hidden="true" aria-label="Menu">
+  <div class="dh"><div class="logo">C U A N B R O</div><button class="ib" id="drawer-close" aria-label="Tutup menu">✕</button></div>
+  <div class="dm-sec">MENU</div>
+  <button class="dm-item" data-go="home"><span class="ic">🏠</span>Home</button>
+  <button class="dm-item" data-go="aktivitas"><span class="ic">📋</span>Aktivitas</button>
+  <button class="dm-item" data-go="misi"><span class="ic">🎯</span>Misi</button>
+  <button class="dm-item" data-go="riwayat"><span class="ic">🕘</span>Riwayat</button>
+  <div class="dm-sec">BANTUAN</div>
+  <button class="dm-item" data-info="tutorial"><span class="ic">📖</span>Tutorial</button>
+  <button class="dm-item" data-info="cs"><span class="ic">💬</span>Bantuan CS</button>
+  <div class="dm-sec">AKUN</div>
+  <button class="dm-item" data-go="profile"><span class="ic">👤</span>Profile</button>
+  <button class="dm-item dm-out" id="dm-out" style="display:none"><span class="ic">🚪</span>Keluar</button>
+  <div class="dm-foot">CUANBRO</div>
+</aside>
+<div class="back" id="csheet">
+  <div class="sheet" role="dialog" aria-modal="true" aria-label="Bantuan CS">
+    <div class="cs-top"><h2>Bantuan CS</h2><span class="badge info" id="cs-mode">🤖 Bot AI</span></div>
+    <div class="muted" id="cs-sub">Dibalas bot AI. Kamu bisa minta admin kapan saja.</div>
+    <div class="cs-list" id="cs-list"></div>
+    <div class="cs-typing" id="cs-typing" style="display:none">Bot sedang mengetik…</div>
+    <p class="msg" id="cs-msg"></p>
+    <button class="chip" id="cs-human" type="button">👤 Minta admin</button>
+    <div class="cs-input">
+      <input type="text" id="cs-text" maxlength="500" placeholder="Tulis pesan..." autocomplete="off">
+      <button class="go" id="cs-send" type="button">Kirim</button>
+    </div>
+    <button class="cancel" id="cs-close" type="button">Tutup</button>
+  </div>
+</div>
+<div class="back" id="nsheet">
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="n-title">
+    <div class="n-top"><h2 id="n-title">Notifikasi</h2><button class="mini" id="n-all" type="button">Tandai semua dibaca</button></div>
+    <div class="muted" id="n-sub"></div>
+    <div class="n-list" id="n-list" aria-live="polite"></div>
+    <p class="msg" id="n-msg"></p>
+    <button class="cancel" id="n-close" type="button">Tutup</button>
+  </div>
+</div>
+<div class="pop-back" id="pop" aria-hidden="true">
+  <div class="pop" role="dialog" aria-modal="true" aria-labelledby="pop-title">
+    <div class="pop-ic">🔔</div>
+    <h2 id="pop-title">Aktifkan notifikasi?</h2>
+    <p>Notifikasi membantu kamu mengetahui informasi penting, seperti pembaruan status penarikan dan pengumuman dari CUANBRO.</p>
+    <p class="pop-note">📎 Pemilihan media hanya dipakai saat kamu mengunggah foto profil, bukti transaksi, atau file lain yang dibutuhkan fitur CUANBRO. Aplikasi memakai pemilih file bawaan perangkat dan tidak meminta akses ke seluruh galeri.</p>
+    <p class="msg" id="pop-msg" role="status"></p>
+    <button class="go" id="pop-allow" type="button">Izinkan</button>
+    <button class="cancel" id="pop-deny" type="button">Tolak</button>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="back" id="isheet">
+  <div class="sheet" role="dialog" aria-modal="true">
+    <h2 id="i-title"></h2>
+    <div id="i-body"></div>
+    <button class="cancel" id="i-close">Tutup</button>
+  </div>
+</div>
+<div class="back" id="msheet">
+  <div class="sheet" role="dialog" aria-modal="true">
+    <h2 id="m-title"></h2>
+    <div id="m-body"></div>
+    <p class="msg" id="m-msg"></p>
+    <button class="go" id="m-go">Ambil Misi</button>
+    <button class="cancel" id="m-close">Tutup</button>
+  </div>
+</div>
+<div class="back" id="detail">
+  <div class="sheet" role="dialog" aria-modal="true">
+    <h2 id="d-title"></h2>
+    <div id="d-body"></div>
+    <button class="cancel" id="d-close">Tutup</button>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
